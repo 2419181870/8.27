@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdut.demo.mapper.CourseMajorMapper">
+
+    <select id="getCourseByMajor" resultMap="CTMResult">
+        select *
+        from course a LEFT join major b
+        on a.course_major_id=b.major_id
+        where b.major_college_name=#{major_college_name} AND major_id=#{major_id} AND course_academic_year=#{course_academic_year} AND course_class_id=#{course_class_id}
+    </select>
+    <resultMap id="CTMResult" type="com.cdut.demo.entity.CourseMajor">
+    </resultMap>
+</mapper>

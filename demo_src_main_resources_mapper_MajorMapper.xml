@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdut.demo.mapper.MajorMapper">
+    <resultMap id="MMResult" type="com.cdut.demo.entity.Major">
+    </resultMap>
+    <insert id="addNewMajor" parameterType="com.cdut.demo.entity.Major">
+        insert into major(major_id,major_name)
+        values (#{major_id},#{major_name})
+        on DUPLICATE KEY update
+       #{major_id},
+       #{major_name}
+    </insert>
+    <select id="getMajorByName" resultMap="MMResult">
+        SELECT * FROM major
+        WHERE major_name LIKE "%"#{major_name,jdbcType=VARCHAR}"%"
+        having major_level=#{major_level}
+    </select>
+</mapper>
